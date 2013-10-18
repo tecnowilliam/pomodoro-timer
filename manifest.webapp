@@ -1,0 +1,27 @@
+{
+	"version"       : "1.0",
+	"name"          : "Pomodoro Timer",
+	"description"   : "Easy and useful pomodoro timer from www.pomodorotime.org. You can use it without internet connection",
+	"launch_path"   : "/index.html",
+	"icons": {
+		"16" : "/images/icons/mortar-16.png",
+		"48" : "/images/icons/mortar-48.png",
+        "60" : "/images/icons/mortar-60.png",
+		"128": "/images/icons/mortar-128.png"
+	},
+	"developer": {
+		"name": "William Vargas",
+		"url" : "https://twitter.com/tecnowilliam"
+	},
+	"installs_allowed_from": ["*"],
+	"locales": {
+		"es": {
+			"description": "Fácil y útil temporizador pomodoro de www.pomodorotime.org. Se puede utilizar sin conexión a internet",
+			"developer"  : {
+    			"name" : "William Vargas",
+				"url"  : "https://twitter.com/tecnowilliam"
+			}
+		}
+	},
+	"default_locale": "en"
+}

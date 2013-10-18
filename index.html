@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+
+	<!-- Basic Page Needs
+  ================================================== -->
+	<meta charset="utf-8">
+	<title>Pomodoro Web App</title>
+	<meta name="description" content="It's Focus Time! is a simple and elegantly designed free online Pomodoro timer">
+	<meta name="author" content="Baris Sarer">
+        <meta name=keywords content=pomodoro technique,pomodor timer, online pomodoro timer, it's focus time, productivity, pomodoro software, free pomodoro timer>
+
+
+	<!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+  ================================================== -->
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/skeleton.css">
+	<link rel="stylesheet" href="css/layout.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<link rel="stylesheet" href="css/v.min.css">
+    <script src="js/jquery-1.9.1.js"></script>
+	<script src="js/jquery.mobile-1.3.2.js"></script>
+</head>
+<body>
+
+	<div  data-role="none" style="display:none">
+    		<!--[if IE]>
+		<audio  data-role="none" id="clock1" controls preload loop>
+            <source src="audio/clock.ogg" type="audio/ogg">
+            <source src="audio/clock.wav" type="audio/wav">
+            <source src="audio/clock.mp3" type="audio/mpeg">
+        </audio>
+          <audio data-role="none" id="alarm" controls preload>
+        	<source src="audio/alarm.ogg" type="audio/ogg">
+            <source src="audio/alarm.wav" type="audio/wav">
+             <source src="audio/alarm.mp3" type="audio/mpeg">
+        </audio>
+        <![endif]-->
+        <!--[if !IE]> -->
+		<audio  data-role="none" id="clock1" controls preload loop>
+            <source src="audio/clock.ogg" type="audio/ogg">
+            <source src="audio/clock.mp3" type="audio/mpeg">
+        </audio>
+         <audio data-role="none" id="alarm" controls preload>
+        	<source src="audio/alarm.ogg" type="audio/ogg">
+             <source src="audio/alarm.mp3" type="audio/mpeg">
+        </audio>
+        <!-- <![endif]-->
+    </div>
+    <!-- <header>
+    	<span data-role="none" id="title" style="font-family:GothamRounded-Bold; width:100%;text-align:center; color:#E04E49;font-size:29px;">IT'S FOCUS TIME!</span><br> <a href="../index.html" data-ajax="false"   style="margin-left:auto;margin-right:auto; position:relative;font-size:12px;text-decoration:underline;color:#49c5e0;margin-top:0px; font-weight:bold;">www.pomodorotime.org</a>
+    </header> -->
+	<div class="container">
+    	<div class="six columns" style="text-align:center;">
+			   
+                <div id='timerticking'>
+                    <div id='tick'>
+                    	<div style="margin-left:auto;margin-right:auto;text-align:center">
+                            <p class='tickvalue' id='tickminutes' style="text-align:right;margin-right:-8px"> 25 </p> 
+                            <p class='tickvalue' id='tickseconds' style="text-align:left; width:105px;">:00 </p>
+                        </div>
+                    </div> 
+                 <a id="startStop" href="#" onclick=controlWatch()  data-theme="a" data-role="button" style="margin:0px;border-bottom-left-radius:15px;-o-border-bottom-left-radius:15px;-webkit-border-bottom-left-radius:15px;-moz-border-bottom-left-radius:15px;border-bottom-right-radius:15px;-o-border-bottom-right-radius:15px;-webkit-border-bottom-right-radius:15px;-moz-border-bottom-right-radius:15px;font-family:GothamRounded-Bold;font-weight:normal;" data-corners="false">START</a>	
+                </div> 
+                <div id="pomodoroCount">Pomodoro #1</div>
+                <div id="notifications"><p>no notifications</p></div>
+                <div id="preferences">
+                	<span class="subtitle" style="min-height:60px;">SOUND PREFERENCES</span>
+                	<div class="subbox"> 
+                        <div style="width:40%; display:inline-block;">
+                        <input type="checkbox" id="checkbox-1-1" onClick="tickingControl()" checked="true" class="regular-checkbox" data-role="none"/><label for="checkbox-1-1"></label><span>Ticking</span>			    
+                        			
+                        </div>
+                        <div style="width:40%; display:inline-block;">
+                        <input type="checkbox" id="checkbox-1-2" onClick="alarmControl()" 	checked="true" class="regular-checkbox" data-role="none"/><label for="checkbox-1-2"></label><span>Alarm</span>						
+                        </div>
+                    </div>
+                    
+                    <span class="subtitle">TIME PREFERENCES</span>
+                   <div class="subbox"> 
+                    	<div class="sliderContainer">
+                            <span id="pomodoroValue">Pomodoro : 25</span><br>
+                            <input type="range" name="slider-mini" id="slider-mini-pomo" value="25" min="1" max="60" data-highlight="true" data-mini="true"/>				
+                        </div>
+                        <div class="sliderContainer">
+                        	<span id="breakValue">Break : 5</span><br>
+                            <input type="range" name="slider-mini" id="slider-mini-break" value="5" min="1" max="15" data-highlight="true" data-mini="true" />				
+                        </div>
+                        <div class="sliderContainer">
+                        	<span id="longBreakValue">Long break : 15</span><br>
+                            <input type="range" name="slider-mini" id="slider-mini-long" value="15" min="1" max="45" data-highlight="true" data-mini="true" />				
+                        </div>   
+                            
+                    </div>
+               </div>
+        </div>
+		
+	</div>
+	<!-- container -->
+
+
+<!-- End Document
+================================================== -->
+</body>
+<script language='Javascript'>
+var pomodoroCounterShow=1; 
+var mdown,pomodoroCounter=1;
+var timrstatus=true,tickSound=true,alarm=true;
+var buttonState=false,pomodoroRuns=false;
+var timr;
+var pomodoro=25,normalBreak=5,longBreak=15;
+var m=pomodoro;s=00;
+var stopSound=false;
+$(document).ready(function(e) {
+$( "#slider-mini-pomo" ).bind( "change", function(event, ui) {
+  		$("#pomodoroValue").html("Pomodoro: "+$(this).val());
+		pomodoro=$(this).val();
+		if(buttonState==false){
+			document.getElementById('tickminutes').innerHTML=pomodoro;  
+			document.getElementById('tickseconds').innerHTML=":00";
+		}
+		
+	});
+	$( "#slider-mini-break" ).bind( "change", function(event, ui) {
+  		$("#breakValue").html("Break: "+$(this).val());
+		normalBreak=$(this).val()
+	});
+	$( "#slider-mini-long" ).bind( "change", function(event, ui) {
+  		$("#longBreakValue").html("Long break: "+$(this).val());
+		longBreak=$(this).val()
+	});
+
+});
+
+function tickingControl()
+{
+	if(tickSound==false){
+		if(buttonState==true)
+		document.getElementById('clock1').play();
+		tickSound=true;
+	}else{
+		document.getElementById('clock1').pause();
+		tickSound=false;
+	}
+}
+function alarmControl()
+{
+	if(alarm==false){
+		alarm=true;
+	}else{
+		alarm=false;
+	}
+}
+function controlWatch()
+{
+	if(buttonState==false){
+		buttonState=true;
+		start();
+		$("#startStop .ui-btn-inner .ui-btn-text").html("STOP");
+	}else{
+		buttonState=false;
+		stopWatch();
+		$("#startStop .ui-btn-inner .ui-btn-text").html("START");
+	}
+} 
+function start(){
+	stopSound=false;
+	$('#pomodoroCount').css('opacity',1).hide().fadeIn('slow');
+	pomodoroRuns=true;
+	if(timrstatus==true)
+	{	if(tickSound){
+		document.getElementById('clock1').play();
+		}
+		m=pomodoro;	
+		timr=setInterval("ticking()",1000); 
+		timrstatus=false;
+	}
+} 
+function stopWatch()
+{	
+	stopSound=true;
+	if(!pomodoroRuns){
+		if(pomodoroCounter==4){
+			pomodoroCounter=1;
+		}
+		else{
+			pomodoroCounter+=1;
+		}
+		pomodoroCounterShow+=1;
+	}
+	$('#pomodoroCount').css('opacity',0).html("Pomodoro #"+pomodoroCounterShow);
+	pomodoroRuns=false;
+	document.getElementById('clock1').pause();
+	clearInterval(timr); 
+	m=pomodoro;s=00;
+	document.getElementById('tickminutes').innerHTML=m;
+	document.getElementById('tickseconds').innerHTML=":00";
+	timrstatus=true; 
+} 
+
+function ticking()
+{
+	$("slider-mini-pomo .ui-slider a.ui-slider-handle .ui-btn-inner .ui-btn-text").html(s);
+	if(s>0){s=s-01;mdown=false;} 
+	else if(s==0){s=59;mdown=true;} 
+	if(mdown==true && m>0){
+		m=m-01;
+		mdown=false;
+	} 
+	if(mdown==true && m==0){
+		if(pomodoroRuns==true){	
+			if(pomodoroCounter==4){
+				m=longBreak;
+				$('#pomodoroCount').css('visibility','hidden').html("Pomodoro #"+pomodoroCounterShow+" <span style='color:#E04E49'>(long break)</span>").css('visibility','visible').hide().fadeIn('slow');	
+			}else{		
+				m=normalBreak;
+				$('#pomodoroCount').css('visibility','hidden').html("Pomodoro #"+pomodoroCounterShow+" <span style='color:#E04E49'>(break)</span>").css('visibility','visible').hide().fadeIn('slow');				
+			}
+				pomodoroRuns=false;		
+		}else{
+			if(pomodoroCounter==4){
+				pomodoroCounter=1;
+				pomodoroCounterShow++;
+				m=pomodoro;
+				pomodoroRuns=true;
+				$('#pomodoroCount').css('visibility','hidden').html("Pomodoro #"+pomodoroCounterShow).css('visibility','visible').hide().fadeIn('slow');				
+				
+			}
+			else{
+				pomodoroCounterShow++;
+				pomodoroCounter++;
+				m=pomodoro;
+				pomodoroRuns=true;
+				$('#pomodoroCount').css('visibility','hidden').html("Pomodoro #"+pomodoroCounterShow).css('visibility','visible').hide().fadeIn('slow');				}
+		}
+		s=0;
+		if(alarm){
+		document.getElementById('alarm').play();
+		}
+	}
+	document.getElementById('tickminutes').innerHTML=m;  
+	if(s>=10)
+	document.getElementById('tickseconds').innerHTML=":"+s;
+	else
+	document.getElementById('tickseconds').innerHTML=":0"+s;
+}
+
+</script>
+
+<!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=8383204; 
+var sc_invisible=1; 
+var sc_security="45d4b0e0"; 
+</script>
+<script type="text/javascript"
+src="http://www.statcounter.com/counter/counter.js"></script>
+<noscript><div class="statcounter"><a title="web analytics"
+href="http://statcounter.com/" target="_blank"><img
+class="statcounter"
+src="http://c.statcounter.com/8383204/0/45d4b0e0/1/"
+alt="web analytics"></a></div></noscript>
+<!-- End of StatCounter Code for Default Guide -->
+
+</html>
+<!-- Localized -->
